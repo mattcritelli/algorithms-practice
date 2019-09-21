@@ -2,7 +2,7 @@ const crossword = [
   '+-++++++++',
   '+-++++++++',
   '+-++++++++',
-  '+DELHI++++',
+  '+-----++++',
   '+-+++-++++',
   '+-+++-++++',
   '+++++-++++',
@@ -21,28 +21,23 @@ const words = [
 function spaceCount(row) {
   let splitRow = row.split('');
   let count = 0;
-  let startIdx;
 
-  for (let i = 0; i < splitRow.length; i++) {
-    if (splitRow[i] !== '+') count++;
-    if (!startIdx) startIdx = i;
+  for (let x = 0; x < splitRow.length; x++) {
+    if (splitRow[x] === '-') count++;
   }
-  console.log('count', count)
-  return { count, startIdx };
+  return count;
 }
 
-function insertWord(row, rowData, word) {
-  const { count, startIdx } = rowData;
+function insertWord(row, word) {
   let splitRow = row.split('');
   let letterIndex = 0;
-  let output = '';
 
-  for (let i = startIdx; i < splitRow.length; i++) {
+  for (let i = 0; i < splitRow.length; i++) {
     if (splitRow[i] === '-') {
       splitRow[i] = word.charAt(letterIndex);
       letterIndex++;
     } else if (splitRow[i] === word.charAt(letterIndex)) {
-      letterIndex++
+      letterIndex++;
     }
   }
   return splitRow.join('');
@@ -67,26 +62,45 @@ function rotatePuzzle(puzzle) {
 
 
 function crosswordPuzzle(crossword, words) {
-  // for(let i = 0; i < 5; i++) {
-  for (let i = 0; i < crossword.length; i++) {
-    let row = crossword[i];
-    const rowData = spaceCount(row);
-    console.log('rowData', rowData)
+  let crosswordDup = crossword.slice(); 
+
+  for (let i = 0; i < crosswordDup.length; i++) {
+    let row = crosswordDup[i];
+    const count = spaceCount(row);
 
     for (let j = 0; j < words.length; j++) {
-      if (words[j].length === rowData.count) {
-        let result = insertWord(row, rowData, words[j]);
-        console.log(typeof result)
-        crossword[i] = result;
+      if (words[j].length === count) {
+        let result = insertWord(row, words[j]);
+        crosswordDup[i] = result;
         break;
       }
     }
   }
-  console.log(crossword)
+
+  // let rotatedPuzzle = rotatePuzzle(crossword)
+
+  // for (let i = 0; i < rotatedPuzzle.length; i++) {
+  //   let row = rotatedPuzzle[i];
+  //   const count = spaceCount(row);
+
+  //   for (let j = 0; j < words.length; j++) {
+  //     if (words[j].length === count) {
+  //       let result = insertWord(row, words[j]);
+  //       rotatedPuzzle[i] = result;
+  //       break;
+  //     }
+  //   }
+  // }
+
+  // let reRotatedPuzzle = rotatePuzzle(rotatedPuzzle);
+
+  console.log('\n\noriginal\n', crossword)
+  console.log('\n\nduplicated\n', crosswordDup)
+  // console.log('\n\nreRotatedPuzzle\n', reRotatedPuzzle)
 }
 
 crosswordPuzzle(crossword, words);
-// rotatePuzzle(crossword);
+// console.log(rotatePuzzle(crossword));
 
 
 // OTHER POSSIBLE PUZZLES
