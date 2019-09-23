@@ -151,7 +151,7 @@ list.insert(30);
 list.insert(40);
 // console.log('list after insert 3', util.inspect(list, { showHidden: false, depth: null }));
 
-list.insertInto(2, 'donkey dicks');
+list.insertInto(2, 27);
 // console.log('list after insert 3', util.inspect(list, { showHidden: false, depth: null }));
 
 // list.pop();
@@ -183,7 +183,7 @@ list.insertInto(2, 'donkey dicks');
 
 // console.log('\nlist get', list.get(2));
 
-// console.log('\nlist set', list.set(3, 'donkey dicks'));
+// console.log('\nlist set', list.set(3, 88));
 
 // list.insert(50);
 
