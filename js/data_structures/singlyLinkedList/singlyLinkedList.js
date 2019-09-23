@@ -142,16 +142,16 @@ const list = new LinkedList();
 list.insert(10);
 // console.log('\nlist after insert 1', util.inspect(list, { showHidden: false, depth: null }));
 
-list.insert(20);
+// list.insert(20);
 // console.log('\nlist after insert 2', util.inspect(list, { showHidden: false, depth: null }));
 
-list.insert(30);
+// list.insert(30);
 // console.log('list after insert 3', util.inspect(list, { showHidden: false, depth: null }));
 
-list.insert(40);
+// list.insert(40);
 // console.log('list after insert 3', util.inspect(list, { showHidden: false, depth: null }));
 
-list.insertInto(2, 27);
+// list.insertInto(2, 27);
 // console.log('list after insert 3', util.inspect(list, { showHidden: false, depth: null }));
 
 // list.pop();
