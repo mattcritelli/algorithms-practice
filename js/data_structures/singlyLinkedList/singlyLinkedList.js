@@ -14,6 +14,59 @@ class LinkedList {
     this.length = 0;
   }
 
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node; // these 2 lines swao head & tail
+
+    console.log('node', node);
+    console.log('\n\nthis.head', this.head);
+    console.log('\n\nthis.tail', this.tail);
+    
+
+    // let next;
+    // let prev = null;
+
+    // for(let i = 0; i < this.length; i++) {
+    //   next = node.next;
+    //   node.next = prev;
+    //   prev = node;
+    //   node = next;
+    // }
+
+
+
+  }
+
+  // reverse() {
+  //   let nextNode = this.head;
+  //   let remainingList = this.head.next;
+
+  //   this.tail = nextNode; // set head to tail
+  //   this.tail.next = null; // break connection by setting next to null
+
+  //   while (remainingList.next !== null) {
+  //     this.length--;
+  //     this.unshift(remainingList.value);
+  //     remainingList = remainingList.next;
+  //   }
+  //   this.unshift(remainingList.value);
+  //   this.length--;
+  //   return list;
+  // }
+
+  remove(index) {
+    if(index < 0 || index > this.length - 1) return null;
+    if(index === 0) return this.shift ();
+    if(index === this.length - 1) return this.pop();
+
+    let prevNode = this.get(index - 1);
+    let removed = prevNode.next;
+
+    prevNode.next = removed.next;
+    return removed;
+  }
+
   get(index) {
     if (index < 0 || index > this.length - 1) return null;
 
@@ -38,16 +91,16 @@ class LinkedList {
   }
 
   insertInto(index, newValue) {
-    if (index < 0 || index > this.length - 1) return null;
+    if (index < 0 || index > this.length - 1) return null; // index is out of range
     if(index === 0) {
-      return this.unshift(newValue);
+      return this.unshift(newValue); // insert at head
     }
 
     if(index === this.length - 1) {
-      return this.insert(newValue);
+      return this.insert(newValue); // insert at tail
     }
 
-    let count = 0;
+    let count = 0; 
     let newNode = new Node(newValue);
     let prevNode = this.head;
     let nodeAtIndex = this.head.next
@@ -128,28 +181,24 @@ class LinkedList {
     
         this.length++;
     return this;
-  }
-
-
-
-  
+  }  
 }
 
 const list = new LinkedList();
 
 // console.log('\nlist', list)
 
-list.insert(10);
+list.insert('a'); // index: 0, this.length = 1
 // console.log('\nlist after insert 1', util.inspect(list, { showHidden: false, depth: null }));
 
-// list.insert(20);
+list.insert('b'); // index: 1, this.length = 2
 // console.log('\nlist after insert 2', util.inspect(list, { showHidden: false, depth: null }));
 
-// list.insert(30);
+list.insert('c'); // index: 2, this.length = 3
 // console.log('list after insert 3', util.inspect(list, { showHidden: false, depth: null }));
 
-// list.insert(40);
-// console.log('list after insert 3', util.inspect(list, { showHidden: false, depth: null }));
+list.insert('d'); // index: 3, this.length = 4
+// console.log('list after 4th insert - "d"', util.inspect(list, { showHidden: false, depth: null }));
 
 // list.insertInto(2, 27);
 // console.log('list after insert 3', util.inspect(list, { showHidden: false, depth: null }));
@@ -185,6 +234,7 @@ list.insert(10);
 
 // console.log('\nlist set', list.set(3, 88));
 
-// list.insert(50);
+// console.log('remove', list.remove(2));
+console.log('reversed', list.reverse());
 
-console.log('\nlist', util.inspect(list, { showHidden: false, depth: null }))
+// console.log('\nlist', util.inspect(list, { showHidden: false, depth: null }))
