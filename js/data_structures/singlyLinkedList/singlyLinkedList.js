@@ -23,19 +23,15 @@ class LinkedList {
     console.log('\n\nthis.head', this.head);
     console.log('\n\nthis.tail', this.tail);
     
+    let next;
+    let prev = null;
 
-    // let next;
-    // let prev = null;
-
-    // for(let i = 0; i < this.length; i++) {
-    //   next = node.next;
-    //   node.next = prev;
-    //   prev = node;
-    //   node = next;
-    // }
-
-
-
+    for(let i = 0; i < this.length; i++) {
+      next = node.next; // sets next to store remaining nodes in list
+      node.next = prev;  // sets next value of current node to prev
+      prev = node; // sets prev variable to current node
+      node = next; // sets current node to next node
+    }
   }
 
   // reverse() {
@@ -191,13 +187,13 @@ const list = new LinkedList();
 list.insert('a'); // index: 0, this.length = 1
 // console.log('\nlist after insert 1', util.inspect(list, { showHidden: false, depth: null }));
 
-list.insert('b'); // index: 1, this.length = 2
+// list.insert('b'); // index: 1, this.length = 2
 // console.log('\nlist after insert 2', util.inspect(list, { showHidden: false, depth: null }));
 
-list.insert('c'); // index: 2, this.length = 3
+// list.insert('c'); // index: 2, this.length = 3
 // console.log('list after insert 3', util.inspect(list, { showHidden: false, depth: null }));
 
-list.insert('d'); // index: 3, this.length = 4
+// list.insert('d'); // index: 3, this.length = 4
 // console.log('list after 4th insert - "d"', util.inspect(list, { showHidden: false, depth: null }));
 
 // list.insertInto(2, 27);
@@ -235,6 +231,6 @@ list.insert('d'); // index: 3, this.length = 4
 // console.log('\nlist set', list.set(3, 88));
 
 // console.log('remove', list.remove(2));
-console.log('reversed', list.reverse());
+// console.log('reversed', list.reverse());
 
-// console.log('\nlist', util.inspect(list, { showHidden: false, depth: null }))
+console.log('\nlist', util.inspect(list, { showHidden: false, depth: null }))
