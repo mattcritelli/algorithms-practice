@@ -14,6 +14,8 @@ class BinarySearchTree {
   }
 
   traverse(node, value) {
+    if(node.value === value) return undefined;
+
     if(value < node.value) {
       return node.left;
     }
@@ -30,6 +32,8 @@ class BinarySearchTree {
       let nextNode = this.traverse(currNode, value);
       
       while (nextNode !== null) {
+        if (nextNode === undefined) return undefined;
+        
         currNode = nextNode;
         nextNode = this.traverse(currNode, value);
       }
@@ -92,9 +96,7 @@ bst.insert(80);
 
 console.log('\n\nbst insert 80\n', bst);
 
-bst.insert(40);
 bst.insert(45);
-bst.insert(25);
 bst.insert(35);
 bst.insert(85);
 bst.insert(90);
